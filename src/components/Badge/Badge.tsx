@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const Badge = ({ caption }: { caption: number }) => {
+const Badge = ({ caption }) => {
     return (
         <motion.span
             animate={{ scale: [1, 1.2, 1] }}

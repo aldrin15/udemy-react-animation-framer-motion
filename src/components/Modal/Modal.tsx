@@ -8,6 +8,7 @@ const Modal = ({
 }: {
     title: string
     children: string | JSX.Element | JSX.Element[]
+    onClose: () => {}
 }) => {
     return createPortal(
         <>

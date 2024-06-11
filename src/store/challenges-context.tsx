@@ -2,14 +2,18 @@ import { createContext, useState } from 'react'
 
 export const ChallengesContext = createContext({
     challenges: [],
-    addChallenge: () => {},
-    updateChallengeStatus: () => {},
+    addChallenge: (challenge: {}) => {},
+    updateChallengeStatus: (challengeId: string, newStatus: string) => {},
 })
 
-const ChallengesContextProvider = ({ children }) => {
+const ChallengesContextProvider = ({
+    children,
+}: {
+    children: string | JSX.Element | JSX.Element[]
+}) => {
     const [challenges, setChallenges] = useState([])
 
-    function addChallenge(challenge) {
+    function addChallenge(challenge: {}) {
         setChallenges((prevChallenges) => [
             {
                 ...challenge,
@@ -20,13 +24,15 @@ const ChallengesContextProvider = ({ children }) => {
         ])
     }
 
-    function deleteChallenge(challengeId) {
+    function deleteChallenge(challengeId: string) {
         setChallenges((prevChallenges) =>
-            prevChallenges.filter((challenge) => challenge.id !== challengeId)
+            prevChallenges.filter(
+                (challenge: { id: string }) => challenge.id !== challengeId
+            )
         )
     }
 
-    function updateChallengeStatus(challengeId, newStatus) {
+    function updateChallengeStatus(challengeId: string, newStatus: string) {
         setChallenges((prevChallenges) =>
             prevChallenges.map((challenge) => {
                 if (challenge.id === challengeId) {
